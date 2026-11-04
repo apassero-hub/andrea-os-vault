@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Obsidian: file di stato/UI che cambiano di continuo (non sono contenuto)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+
+# Cache del plugin obsidian-git
+.obsidian/plugins/obsidian-git/data.json
+.trash/
+
+# Cache/credenziali Cloudflare (non vanno versionate)
+.cloudflare/
+**/.cloudflare/
