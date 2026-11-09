@@ -134,7 +134,7 @@ Sono i numeri da misurare a ogni build, su una cartella di prova di 2.000 ARW de
 - **Cache delle miniature su disco**, legata a percorso, dimensione e data di modifica: riaprire una cartella è istantaneo.
 - **Cartelle enormi** (20.000 e più file): elenco caricato a pezzi, interfaccia che non si blocca mai.
 - **RAW vero solo su richiesta** (un tasto): per controllare ombre e alte luci quando il JPEG incorporato non basta. Va sviluppato in sottofondo.
-- **Le anteprime di selezione non sviluppano mai il RAW** (Andrea, 9 novembre: "non deve mai caricare il raw in una preview da selezione"). Schermo, lentino e `Z` usano sempre il JPEG incorporato più grande; per i RAW senza JPEG leggibile, la miniatura che il file porta con sé. Se l'anteprima è più piccola del sensore, lo zoom e il lentino la allargano fino al 100% della foto vera: morbida, ma all'ingrandimento giusto e subito.
+- **Le anteprime di selezione non sviluppano mai il RAW** (Andrea, 9 novembre: "non deve mai caricare il raw in una preview da selezione"). Schermo, lentino e `Z` usano sempre il JPEG incorporato più grande; per i RAW senza JPEG leggibile, la miniatura che il file porta con sé. Se l'anteprima è più piccola del sensore, lo zoom e il lentino la allargano fino al 100% della foto vera: morbida, ma all'ingrandimento giusto e subito. **Eccezione, "automatico se manca"** (Andrea, 9 novembre, dopo la prova con la RX100 VII): se la piena è solo un'anteprima più piccola della foto (RX100 VII, Sony più vecchie, NEF small) e stai guardando in `Z` o col lentino, si sviluppa il RAW di quella sola foto, in sottofondo; intanto si vede l'anteprima allargata, poi la foto nitida. Mai nel precaricamento delle vicine. Con la A1, che ha il JPEG pieno 8640 (verificato sui 151 ARW della SD del 9 novembre), non succede mai.
 - **Verificato l'8 novembre** su file veri (ILCE-1, firmware 4.00, La Thuile Trail 2026), Mac M1 Max con schermo 5K:
   - Ogni ARW contiene tre JPEG: miniatura 160×120, anteprima 1616×1080 (circa 500 KB) e **JPEG a piena risoluzione 8640×5760** (circa 9,3 MB). Lo zoom al 100% si fa quindi senza sviluppare il RAW.
   - Tempi per foto: anteprima 1616 in 5 ms; foto a misura di schermo (2880 px) con ImageIO in **26 ms**; JPEG pieno 8640 in 91 ms; lettura dei 9,3 MB dal G-SPEED circa 30 ms a disco freddo.
@@ -539,7 +539,7 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 14. **Etichette Lightroom italiano e inglese** entrambe previste; **il confronto resta com'è**, da 2 a 4 foto (4.6, 14.2).
 15. **`P` dentro la raffica conferma lo scatto ed esce**; stelle, colori, `X` e `U` lasciano dentro (4.4).
 16. **Acceleratore hardware** come impostazione attivabile e disattivabile, accesa di serie (3).
-17. **Le anteprime di selezione non sviluppano mai il RAW**; il lentino e `Z` restano al 100% della foto vera allargando l'anteprima (3).
+17. **Le anteprime di selezione non sviluppano mai il RAW**; il lentino e `Z` restano al 100% della foto vera allargando l'anteprima (3); **eccezione automatica** solo dove manca il JPEG pieno, per la foto mostrata in `Z` o col lentino (3).
 
 **Confermata l'8 novembre:** la vista foto scura di serie (sezione 11).
 
