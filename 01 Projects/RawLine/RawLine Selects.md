@@ -562,11 +562,19 @@ Cosa fa Photo Mechanic (ricerca del 10 novembre): stelle e colori si filtrano da
 
 **Titolo con "Beta".** Come Rename mostra "RawLine Rename Beta" nella barra in alto, Selects mostrerà "RawLine Selects Beta" quando si chiude l'impostazione della beta (Andrea, 10 novembre).
 
+**Rivisto dopo la prova di Andrea (10 novembre)** — "stiamo andando nella giusta direzione", bozza visiva approvata:
+- **In cima** la riga del titolo "RawLine Selects" con l'etichetta Beta, come Rename; il nome della cartella non si ripete lì né sopra la griglia (sta nella scheda).
+- **Filtro nella barra in alto**, a destra, subito prima del pulsante dell'inspector: di serie solo le stelle; "Altri criteri" apre colori e bandierine. Accanto "87 di 1.298".
+- **Ricerca rapida in cima alla barra laterale**, sopra Dischi e Preferiti.
+- **⌘F apre la ricerca avanzata** in un foglio: *Criteri* (testo, fotocamera, obiettivo, date, ISO, focale) e *Lista di nomi*. La lista si incolla così come arriva da Pixieset, PhotoShelter o dal filtro di Lightroom: nomi separati da virgole, spazi, punti e virgola o righe, con o senza estensione, maiuscole indifferenti. Dice quante foto ha trovato e quali nomi no; poi "Solo mostra" o "Mostra e assegna" con le stelle, il colore o la scelta indicati (si annulla con ⌘Z).
+- **Schede:** il numero di foto in ogni scheda; la × ha uno sfondo che si accende al passaggio del mouse; la scheda attiva è unita alla griglia; "+" apre un'altra cartella.
+- **Cartella con sole sottocartelle** (per esempio Tenerife2026 con Andre e Asia): al posto di "nessuna foto" le sottocartelle con il numero di foto, da aprire con un clic, e "Mostra tutte" che mette nella scheda le foto di tutte le sottocartelle insieme (la scheda se lo ricorda).
+
 ---
 
 ## 8. Piano di sviluppo
 
-*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario; fatto), 1C2 inspector a destra e zoom rivisto (4.11, fatto), 1C3 filtro unico, ricerca e foto trascinate fuori (4.12), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
+*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario; fatto), 1C2 inspector a destra e zoom rivisto (4.11, fatto), 1C3 filtro unico, ricerca e foto trascinate fuori (4.12), 1C4 finestra rivista dopo la prova (4.12), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
 
 | Fase | Contenuto | Esito |
 |---|---|---|
