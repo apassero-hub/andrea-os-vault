@@ -134,6 +134,7 @@ Sono i numeri da misurare a ogni build, su una cartella di prova di 2.000 ARW de
 - **Cache delle miniature su disco**, legata a percorso, dimensione e data di modifica: riaprire una cartella è istantaneo.
 - **Cartelle enormi** (20.000 e più file): elenco caricato a pezzi, interfaccia che non si blocca mai.
 - **RAW vero solo su richiesta** (un tasto): per controllare ombre e alte luci quando il JPEG incorporato non basta. Va sviluppato in sottofondo.
+- **Le anteprime di selezione non sviluppano mai il RAW** (Andrea, 9 novembre: "non deve mai caricare il raw in una preview da selezione"). Schermo, lentino e `Z` usano sempre il JPEG incorporato più grande; per i RAW senza JPEG leggibile, la miniatura che il file porta con sé. Se l'anteprima è più piccola del sensore, lo zoom e il lentino la allargano fino al 100% della foto vera: morbida, ma all'ingrandimento giusto e subito.
 - **Verificato l'8 novembre** su file veri (ILCE-1, firmware 4.00, La Thuile Trail 2026), Mac M1 Max con schermo 5K:
   - Ogni ARW contiene tre JPEG: miniatura 160×120, anteprima 1616×1080 (circa 500 KB) e **JPEG a piena risoluzione 8640×5760** (circa 9,3 MB). Lo zoom al 100% si fa quindi senza sviluppare il RAW.
   - Tempi per foto: anteprima 1616 in 5 ms; foto a misura di schermo (2880 px) con ImageIO in **26 ms**; JPEG pieno 8640 in 91 ms; lettura dei 9,3 MB dal G-SPEED circa 30 ms a disco freddo.
@@ -155,16 +156,16 @@ Sono i numeri da misurare a ogni build, su una cartella di prova di 2.000 ARW de
   Cosa ne segue:
   - Lo scorrimento è già all'altezza dell'obiettivo: con il precaricamento la foto c'è sempre prima che serva.
   - Il 100% va precaricato: in fase 2, quando lo zoom è acceso, si preparano il JPEG pieno della foto corrente e delle vicine nella raffica.
-  - Marche: Sony recenti, Nikon (D850, Z8) e Pentax hanno il JPEG incorporato; i Sony più vecchi hanno solo l'anteprima 1616, e per loro il 100% sviluppa il RAW. L'IIQ di Phase One dà solo 300×220, un limite di macOS.
+  - Marche: Sony recenti, Nikon (D850, Z8) e Pentax hanno il JPEG incorporato; i Sony più vecchi hanno solo l'anteprima 1616: per loro il 100% è l'anteprima allargata (il RAW non si sviluppa, vedi sopra). L'IIQ di Phase One dà solo 300×220, un limite di macOS.
   - **Dopo la fase 0 (8–9 novembre):**
     - Lo schermo si prepara dal JPEG incorporato più grande, ridotto: prima ImageIO sceglieva l'anteprima 1616 degli ARW, morbida a tutto schermo. Costa 150 ms per foto invece di 21, nascosti dal precaricamento.
     - Zoom: `Z` tutto schermo nitido dal file pieno, `⇧Z` 100% con clic e trascina, clic tenuto premuto = lentino al 100%, spazio = 100% temporaneo.
     - In `Z` e `⇧Z` si precaricano la foto piena mostrata e le due successive: su RX100 VII pronta nel 97–100% dei casi.
-    - Sony RX100 VII e ZV-1 hanno solo il JPEG 1616: la nitidezza si giudica con `Z`, che sviluppa il RAW (circa 0,5 s).
+    - Sony RX100 VII e ZV-1 hanno solo il JPEG 1616: con `Z` si vede l'anteprima allargata al 100%; per giudicare la nitidezza vera serve il tasto del RAW su richiesta. *Superato il 9 novembre: prima `Z` sviluppava il RAW (circa 0,3–0,5 s).*
     - Lettori dedicati per CR3, RAF, ORF e RW2 scritti e provati su file costruiti nei test; **da verificare sui RAW veri** della raccolta di prova.
     - **Verifica sui RAW veri (9 novembre)**, in sola lettura, su 26 file di prova di 13 marche e su file di Andrea (Canon R5 Mark II, Panasonic, drone DJI). Tutti i file danno un'immagine, grazie al ripiego su macOS. I lettori propri funzionano su CR3 (R5 II: JPEG pieno 8192×5464), RAF, NEF recenti (D850, Z8 HE), ORF dell'OM-5, RW2, PEF, ARW e SR2.
     - **Corretto lo stesso giorno:** il lettore TIFF non trovava il JPEG grande su CR2 (6720×4480), DNG Leica M10-R (7840), DNG Pentax (6192), DNG iPhone (4032), un NEF di un corpo più vecchio (6048) e 3FR Hasselblad (4136). Nei primi cinque casi il JPEG è registrato come "strip"; nel NEF gli IFD stanno oltre i primi 256 KB. Ora li legge tutti. Restano a macOS: IIQ, FFF Hasselblad X1D, CRW Canon antichi e ORF Olympus E-1.
-    - Per lo schermo, un'anteprima sotto metà del lato richiesto (DNG DJI da 960 px, vecchi SR2 Sony da 640) non viene più allargata: si sviluppa il RAW.
+    - Per lo schermo, un'anteprima sotto metà del lato richiesto (DNG DJI da 960 px, vecchi SR2 Sony da 640) si allarga comunque, senza sviluppare il RAW (*decisione del 9 novembre: prima si sviluppava*).
     - Anteprima davvero piccola, quindi cartello onesto e 100% dal RAW: DNG dei droni DJI (960 px, sensore 12288×8192), ORF dell'Olympus E-1 (1280), IIQ Phase One (300×220).
     - Raccolta di crash e segnalazioni (`⌘⇧B`) letta a ogni inizio sessione.
   - **Da fare con Andrea:** prova a mano di SelectsLab a fianco di Photo Mechanic sulla stessa cartella, e giudizio annotato qui.
@@ -538,6 +539,7 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 14. **Etichette Lightroom italiano e inglese** entrambe previste; **il confronto resta com'è**, da 2 a 4 foto (4.6, 14.2).
 15. **`P` dentro la raffica conferma lo scatto ed esce**; stelle, colori, `X` e `U` lasciano dentro (4.4).
 16. **Acceleratore hardware** come impostazione attivabile e disattivabile, accesa di serie (3).
+17. **Le anteprime di selezione non sviluppano mai il RAW**; il lentino e `Z` restano al 100% della foto vera allargando l'anteprima (3).
 
 **Confermata l'8 novembre:** la vista foto scura di serie (sezione 11).
 
