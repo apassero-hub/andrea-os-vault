@@ -378,6 +378,14 @@ Perché due Esc di troppo non fanno danni (Andrea ha detto che basta così, senz
 - **In alto c'è sempre il percorso** del livello in cui sei, per esempio *Tenerife2026 › DSC01234 › Raffica · 42 scatti*. Si può cliccare per risalire.
 - È anche la risposta al problema 23 (sezione 10): in Capture One un Esc per sbaglio fa uscire dalla modalità Cull.
 
+**Fatto nel piano 1B (9 novembre).** Navigator, schede, griglia e livelli 0 e 1 come sopra. Scelte mie, da confermare con Andrea:
+- Miniature da 96 a 400 punti, 180 di serie, con il cursore in basso a destra e ⌘+ / ⌘−.
+- ⌘⇧] e ⌘⇧[ per la scheda dopo e prima, ⌘1…⌘8 per andare a una scheda, ⌘9 per l'ultima (come Safari).
+- Le schede si ritrovano alla riapertura dell'app, sempre sulla griglia; quelle la cui cartella non c'è più si tolgono da sole.
+- Una scheda di memoria (disco con `DCIM`) si mostra nell'albero già aperta su `DCIM`.
+- Un clic o Invio su una cartella dell'albero la apre in una scheda; le frecce muovono solo l'albero.
+- Una scheda contiene una cartella sola: le schede a più cartelle e i preferiti a gruppi restano della fase 3.
+
 ---
 
 ## 5. Funzioni migliorative (versioni 1.x)
@@ -506,6 +514,8 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 ---
 
 ## 8. Piano di sviluppo
+
+*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
 
 | Fase | Contenuto | Esito |
 |---|---|---|
