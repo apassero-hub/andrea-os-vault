@@ -540,6 +540,7 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 15. **`P` dentro la raffica conferma lo scatto ed esce**; stelle, colori, `X` e `U` lasciano dentro (4.4).
 16. **Acceleratore hardware** come impostazione attivabile e disattivabile, accesa di serie (3).
 17. **Le anteprime di selezione non sviluppano mai il RAW**; il lentino e `Z` restano al 100% della foto vera allargando l'anteprima (3); **eccezione automatica** solo dove manca il JPEG pieno, per la foto mostrata in `Z` o col lentino (3).
+18. **Il colore di Selects è il viola**, quello di Rename resta il verde acqua, così le app si distinguono (11). Marchio `#7B12C6`, fondo dell'icona `#1E092D`; Rename `#12C6AA`. Vale per icona, logo e sito; dentro l'app l'interfaccia resta grafite come in Rename. L'icona attuale è provvisoria (il disegno di Rename in viola).
 
 **Confermata l'8 novembre:** la vista foto scura di serie (sezione 11).
 
