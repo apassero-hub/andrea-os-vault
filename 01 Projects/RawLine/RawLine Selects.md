@@ -532,11 +532,41 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 | `GuideView`, `SettingsView`, `AppLanguage` | Guida alla prima apertura, impostazioni, italiano e inglese | Stessa struttura |
 | `ClockOffset`, `BodyTable` | Corpi macchina AP1/AP2 e scarto degli orologi | Condivisi: le sigle dei corpi impostate in Rename valgono anche in Selects |
 
+### 4.12 Filtro unico, ricerca e foto trascinate fuori (chiesto da Andrea il 10 novembre)
+
+Andrea: un posto solo dove scegliere quali stelle e quali colori vedere, "deve essere tutto un filtro unico"; una ricerca come quella di Photo Mechanic, che funziona ma è poco intuitiva; e poter **trascinare le foto trovate e filtrate fuori dall'app**, nel Finder, in una cartella sul desktop, su Photoshop o su Lightroom, per importare in Lightroom solo le scelte invece di importare tutto e filtrare dopo.
+
+Cosa fa Photo Mechanic (ricerca del 10 novembre): stelle e colori si filtrano da due controlli separati in alto a destra del contact sheet e dal menu Vista; i "Tagged" da un terzo; Trova (⌘F) è una finestra a parte con caselle per i campi, e la ricerca vera con le condizioni c'è solo in Photo Mechanic Plus. Trascinare le foto selezionate su Lightroom è un flusso comune: va lasciato sulla finestra d'importazione o sulla griglia di Lightroom; sull'icona nel Dock Lightroom Classic 15.0 non importa (bug segnalato a novembre 2025).
+
+**Filtro unico** (*scelte mie*):
+- Una barra sopra la griglia, sempre nello stesso posto: stelle (nessuna, 1, 2, 3, 4, 5), colori (i cinque più "nessun colore"), bandierina (scelte, senza, scartate). Ogni bottone si accende e si spegne; se ne possono accendere più di uno.
+- Dentro un gruppo vale "una qualsiasi" (3 o 4 stelle), fra i gruppi vale "tutte" (3 o 4 stelle **e** verde). Un gruppo senza niente acceso non filtra.
+- A destra "87 di 1.840" e "Togli filtro". ⌘L spegne e riaccende il filtro senza perdere le scelte, come in Lightroom.
+- Il filtro vale anche nella foto grande: le frecce passano solo fra le foto filtrate.
+- Una foto che smette di passare il filtro perché le cambi il voto **resta a schermo** finché non tocchi il filtro o la ricerca: niente foto che spariscono sotto le mani mentre valuti.
+- Il contatore in basso (4.5) conta sempre tutta la cartella.
+- Se niente passa: "Nessuna foto corrisponde" con "Togli filtro".
+
+**Ricerca** (*scelte mie*, per essere più chiara di Photo Mechanic):
+- Un campo solo nella barra in alto, ⌘F per andarci, Esc per svuotarlo. Niente finestra a parte, niente caselle.
+- I risultati si vedono mentre scrivi: la griglia mostra solo le foto trovate, insieme al filtro (ricerca **e** filtro).
+- Cerca in tutto ciò che si legge: nome del file, titolo, didascalia, parole chiave, autore, città, luogo, fotocamera, obiettivo. Più parole devono esserci tutte; maiuscole e accenti non contano; basta un pezzo di parola.
+- Il nome del file risponde subito; gli altri campi si leggono dalle intestazioni la prima volta che cerchi in quella cartella, fuori dal thread principale, con l'avanzamento accanto al campo.
+
+**Trascinare fuori:**
+- Dalla griglia si trascinano tutte le foto selezionate (⌘A seleziona quelle filtrate); dalla foto grande, la foto a schermo.
+- **Sempre una copia, mai uno spostamento**: anche sullo stesso disco il Finder copia. Gli originali restano dove sono.
+- Si trascinano i file così come sono, senza conversioni. I sidecar XMP si aggiungeranno con il piano 1D, quando Selects li scrive.
+- Un clic su una foto già selezionata non toglie le altre dalla selezione finché non lasci il tasto senza trascinare, come nel Finder.
+- Suggerimento nell'app: su Lightroom va lasciato sulla finestra d'importazione o sulla griglia, non sull'icona del Dock.
+
+**Titolo con "Beta".** Come Rename mostra "RawLine Rename Beta" nella barra in alto, Selects mostrerà "RawLine Selects Beta" quando si chiude l'impostazione della beta (Andrea, 10 novembre).
+
 ---
 
 ## 8. Piano di sviluppo
 
-*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario; fatto), 1C2 inspector a destra e zoom rivisto (4.11), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
+*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario; fatto), 1C2 inspector a destra e zoom rivisto (4.11, fatto), 1C3 filtro unico, ricerca e foto trascinate fuori (4.12), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
 
 | Fase | Contenuto | Esito |
 |---|---|---|
