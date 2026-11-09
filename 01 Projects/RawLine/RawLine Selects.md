@@ -99,6 +99,37 @@ Sono i numeri da misurare a ogni build, su una cartella di prova di 2.000 ARW de
   - poi ripiego su ImageIO e sull'anteprima di `CIRAWFilter`: **nessun file resta mai senza immagine**.
   - Le anteprime hanno dimensioni molto diverse tra le marche: piene su Sony recenti, Canon CR3 e Nikon Z; circa 1920 px su molte Fujifilm; medie su Panasonic e OM; piccole su medio formato e droni. Per ogni file si salva la dimensione dell'anteprima rispetto al sensore (sezione 4.3).
 - **Decodifica JPEG accelerata** e visualizzazione con Metal: lo zoom e il trascinamento girano sulla scheda grafica.
+- **Decodifica commisurata allo schermo, leggera per il Mac** (deciso con Andrea il 9 novembre):
+  - si decodifica solo quanto lo schermo può mostrare: il lato lungo dello schermo su cui sta la finestra, in pixel veri (per esempio 3456 sul MacBook Pro 16", 2560 sul BenQ 2K, 3840 sul 4K); se sposti la finestra su un altro schermo, la misura cambia;
+  - il JPEG si decodifica già ridotto (a metà, a un quarto) quando basta, invece di aprirlo intero e rimpicciolirlo;
+  - il lavoro in sottofondo (precaricamento lontano, cache, analisi) gira a priorità bassa, con un numero limitato di core, e rallenta o si ferma se il Mac è a batteria, si scalda o ha poca memoria; la foto che stai guardando ha sempre la precedenza;
+  - si misura anche quanta CPU costa ogni foto, non solo quanto tempo: una build che diventa più pesante a parità di velocità non si pubblica.
+  - **Misure del 9 novembre** su 20 JPEG pieni (8640 px) di ARW dell'Alpha 1, già in memoria, M1 Max:
+
+| Metodo | Tempo per foto | CPU per foto | Note |
+|---|---|---|---|
+| Oggi: decodifica intera e riduzione con il processore (schermo 2560–3840) | 104–124 ms | 107–144 ms | tutto sul processore |
+| Oggi, schermo 5K (5120) | 306 ms | 424 ms | |
+| **Decodifica già ridotta a 1/2 (4320 px), decodificatore hardware del chip** | **43 ms** | **12 ms** | circa 3 volte più veloce, circa 11 volte meno CPU |
+| Decodifica piena 8640 hardware (100% e 5K) | 91 ms | 38 ms | |
+| Riduzione a misura esatta con Core Image e ritorno al processore | +50 ms | +13 ms | da evitare: la riduzione la fa la scheda grafica mentre disegna |
+| Decodificatore hardware con più foto insieme | 22 foto al secondo | | **non lavora in parallelo**: una foto alla volta |
+
+  Cosa ne segue (*mia proposta*):
+  - la foto a schermo e le vicine si decodificano con l'hardware, già ridotte (a 1/2 fino al 4K, intere sul 5K); la scheda grafica le porta alla misura dello schermo mentre le disegna;
+  - il processore entra solo quando vai più veloce di circa 22 foto al secondo (tasto tenuto premuto), con pochi core: lì si mostra l'anteprima 1616 (5 ms) e si sostituisce appena la versione nitida è pronta;
+  - la versione decodificata a 1/2 occupa circa il 50% di memoria in più di quella a misura (4320 contro 3456 px): il tetto della cache tiene conto dei byte, non del numero di foto.
+- **"Acceleratore hardware" nelle impostazioni, attivabile e disattivabile** (deciso con Andrea il 9 novembre). Acceso di serie (*mia scelta*); resta come l'hai lasciato ai riavvii. Si cambia mentre l'app gira: le foto già pronte si rifanno nel nuovo modo, a partire da quella a schermo. Acceso, la foto a schermo si decodifica già ridotta con il decodificatore JPEG del chip; spento, tutto si fa con il processore, come prima. Serve a confrontare e come uscita di sicurezza se un Mac o un'anteprima desse problemi. In SelectsLab è già nel menu SelectsLab.
+  - **Misure del 9 novembre sulle ARW di La Thuile Trail** (rawline-bench, 50 file, M1 Max, file già in memoria):
+
+| Schermo | Acceso: tempo / CPU per foto | Spento: tempo / CPU per foto | Acceso / spento in parallelo |
+|---|---|---|---|
+| 2880 | 69 ms / 32 ms | 116 ms / 129 ms | 23 / 51 foto al secondo |
+| 3840 (4K) | 62 ms / 29 ms | 132 ms / 155 ms | 23 / 50 foto al secondo |
+| 5120 (5K) | 160 ms / 187 ms | 343 ms / 456 ms | 34 / 19 foto al secondo |
+
+  - Navigazione simulata (freccia ogni 150 ms e tasto tenuto premuto a 30 foto al secondo): foto pronta nel 100% dei casi in tutti e due i modi. Tutta la prova a 2880 costa **26 s di CPU acceso contro 78 s spento**: due terzi in meno di lavoro per il Mac.
+  - Il prezzo: in memoria le foto acceso sono più grandi (4320 px invece di 2880), quindi la cache, che ha un tetto in byte, ne tiene meno (picco 4,2 GB contro 3,2 GB nella prova). Sul 5K la riduzione a metà non basta e si decodifica intera: lì il chip aiuta meno.
 - **Precaricamento direzionale.** Mentre guardi la foto 120, l'app ha già pronte 121–126 e tiene 117–119. Se vai all'indietro, la finestra si sposta da quella parte. La quantità si adatta alla RAM disponibile.
 - **Cache delle miniature su disco**, legata a percorso, dimensione e data di modifica: riaprire una cartella è istantaneo.
 - **Cartelle enormi** (20.000 e più file): elenco caricato a pezzi, interfaccia che non si blocca mai.
@@ -506,6 +537,7 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 13. **Marcatura sulla pila chiusa** (4.4): tocca solo gli scatti senza marcatura, e l'app dice quanti scatti già marcati ha lasciato com'erano.
 14. **Etichette Lightroom italiano e inglese** entrambe previste; **il confronto resta com'è**, da 2 a 4 foto (4.6, 14.2).
 15. **`P` dentro la raffica conferma lo scatto ed esce**; stelle, colori, `X` e `U` lasciano dentro (4.4).
+16. **Acceleratore hardware** come impostazione attivabile e disattivabile, accesa di serie (3).
 
 **Confermata l'8 novembre:** la vista foto scura di serie (sezione 11).
 
