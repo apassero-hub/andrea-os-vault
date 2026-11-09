@@ -159,7 +159,7 @@ Sono i numeri da misurare a ogni build, su una cartella di prova di 2.000 ARW de
   - Marche: Sony recenti, Nikon (D850, Z8) e Pentax hanno il JPEG incorporato; i Sony più vecchi hanno solo l'anteprima 1616: per loro il 100% è l'anteprima allargata (il RAW non si sviluppa, vedi sopra). L'IIQ di Phase One dà solo 300×220, un limite di macOS.
   - **Dopo la fase 0 (8–9 novembre):**
     - Lo schermo si prepara dal JPEG incorporato più grande, ridotto: prima ImageIO sceglieva l'anteprima 1616 degli ARW, morbida a tutto schermo. Costa 150 ms per foto invece di 21, nascosti dal precaricamento.
-    - Zoom: `Z` tutto schermo nitido dal file pieno, `⇧Z` 100% con clic e trascina, clic tenuto premuto = lentino al 100%, spazio = 100% temporaneo.
+    - Zoom: `Z` (e `⇧Z`) 100% vero nella finestra, con clic e trascina, senza tutto schermo; di nuovo `Z` o `Esc` tornano adattata (decisione 6, cambiata il 9 novembre). Clic tenuto premuto = lentino al 100%, spazio = 100% temporaneo.
     - In `Z` e `⇧Z` si precaricano la foto piena mostrata e le due successive: su RX100 VII pronta nel 97–100% dei casi.
     - Sony RX100 VII e ZV-1 hanno solo il JPEG 1616: con `Z` si vede l'anteprima allargata al 100%; per giudicare la nitidezza vera serve il tasto del RAW su richiesta. *Superato il 9 novembre: prima `Z` sviluppava il RAW (circa 0,3–0,5 s).*
     - Lettori dedicati per CR3, RAF, ORF e RW2 scritti e provati su file costruiti nei test; **da verificare sui RAW veri** della raccolta di prova.
@@ -218,7 +218,7 @@ Scelta e scarto: Lightroom Classic dalla versione 13.2 (febbraio 2024) salva i f
 
 ### 4.3 Controllare il fuoco
 
-- **Zoom al 100% istantaneo** con `⇧Z` (`Z` è il tutto schermo nitido, decisione 6) o tenendo premuto lo spazio (zoom temporaneo: rilasci e torni alla foto intera).
+- **Zoom al 100% istantaneo** con `Z` nella finestra, senza tutto schermo (anche `⇧Z`; si esce con `Z` o `Esc`, decisione 6) o tenendo premuto lo spazio (zoom temporaneo: rilasci e torni alla foto intera).
 - **Il 100% è davvero il 100%** (9 nov): un pixel della foto su un pixel dello schermo, né di più né di meno, e senza sacrificare la velocità.
 - **Menu della percentuale in basso a sinistra**, come in Photoshop e Lightroom (per esempio 25%, 50%, 100%, 200%). Se scegli 50%, da lì in poi ogni zoom va al 50%, per tutta la sessione. A ogni avvio si riparte dal 100%; il valore di partenza si cambia nelle impostazioni. Il valore vale per `⇧Z` e per lo spazio tenuto premuto; il lentino resta sempre al 100% (decisione 6); anche il primo zoom sul punto AF (5.1) è quello di `⇧Z`. *Mia scelta.*
 - Va pensato per tutti gli schermi. Quanto si vede di uno scatto dell'Alpha 1 (8640×5760) a tutto schermo:
@@ -361,7 +361,7 @@ Andrea è anche videomaker: questa è una differenza vera dai concorrenti.
 - Barra laterale a sinistra (come in 11) con dischi e schede di memoria, l'albero delle cartelle e i **preferiti**. Un preferito può essere una cartella o un gruppo di cartelle.
 - Le cartelle aperte sono **schede** in alto, riordinabili, da cambiare anche da tastiera. Una scheda può unire più cartelle, in ordine di scatto.
 - Si apre una cartella con un clic o con Invio nell'albero.
-- **Una sola barra laterale:** in alto dischi, cartelle e preferiti; sotto, filtri con i conteggi e corpi AP1/AP2 (11). Fino alla fase 3 il livello 0 è l'accoglienza con le cartelle recenti e poi la griglia, una cartella alla volta, senza schede. *Mia scelta.*
+- **Una sola barra laterale:** in alto dischi, cartelle e preferiti; sotto, filtri con i conteggi e corpi AP1/AP2 (11). **Il navigator c'è già all'apertura, dalla fase 1** (Andrea, 9 novembre: "il browser e le schede come Photo Mechanic in apertura"): l'app si apre sulla barra laterale con dischi, albero delle cartelle e preferiti, le schede in alto e la griglia al centro. L'accoglienza con le cartelle recenti resta solo come contenuto della griglia quando non c'è ancora nessuna scheda aperta. *Prima era rimandato alla fase 3.*
 - **Spazio** apre la foto dalla griglia, come in Photo Mechanic. Su una pila, Spazio apre la foto grande sulla pila (livello 1); Invio o doppio clic entrano nella raffica (livello 2), come deciso con Andrea. *Mia scelta:* spazio tenuto premuto oltre 0,2 s = zoom temporaneo. Nella foto grande e dentro la raffica, tenuto premuto, è lo zoom temporaneo (4.3).
 
 **Tre livelli. Esc risale sempre di uno solo**
@@ -391,7 +391,7 @@ Tutto sul Mac, con Vision di Apple e il Neural Engine. Niente rete, niente accou
 | Aiuto | Cosa fa per te | Come funziona | Fattibilità |
 |---|---|---|---|
 | **Zoom che segue il soggetto** | Nelle raffiche lo zoom resta sul soggetto anche se ti sei mosso con la fotocamera (4.3) | Allineamento tra due immagini di Vision, sulle anteprime ridotte | Alta |
-| **Primo zoom nel punto giusto** | Il primo `⇧Z` va sul punto AF, poi sul volto, poi sul soggetto | MakerNote per marca + rilevamento volti e soggetto di Vision | Alta (il punto AF va decodificato e verificato corpo per corpo, Sony per prima) |
+| **Primo zoom nel punto giusto** | Il primo `Z` va sul punto AF, poi sul volto, poi sul soggetto | MakerNote per marca + rilevamento volti e soggetto di Vision | Alta (il punto AF va decodificato e verificato corpo per corpo, Sony per prima) |
 | **Salto tra i volti** | In una foto di gruppo, un tasto porta lo zoom al volto successivo | Rilevamento volti di Vision | Alta |
 | **Striscia dei volti** | In una foto di gruppo, tutti i volti ingranditi in fila: controlli gli occhi di 12 persone in un colpo d'occhio, e decidi tu | Rilevamento volti, ritaglio | Alta |
 | **Raffiche raggruppate** | La cartella si ordina da sola in gruppi: è struttura, non giudizio | Ritmo di scatto e numero di sequenza (4.4); la somiglianza visiva (impronte di Vision) serve alle Scene | Alta |
@@ -510,9 +510,9 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 | Fase | Contenuto | Esito |
 |---|---|---|
 | **0. Prova di velocità** | Lettore del JPEG incorporato ARW, visore Metal, precaricamento; misura sui 2.000 ARW dell'Alpha 1. In parallelo: spostare tema, beta e aggiornamenti di Rename in `RawlineAppKit` | Numeri reali contro Photo Mechanic sullo stesso Mac. Se non vinciamo qui, il resto non conta |
-| **1. Visore e valutazione** | Lo scrittore XMP parte solo dopo i file campione di Lightroom con uno scarto, per conoscere il valore di `xmpDM:good`. Si apre con una settimana di **raccolta dei campioni e prove di compatibilità**: RAW per marca, XMP da Lightroom 15 e Capture One, confronto con ApolloOne. Poi: lettori delle anteprime per tutte le marche verificati sui file veri, indice della dimensione dell'anteprima con il cartello onesto, benchmark per marca; griglia, foto singola, stelle, colori, scarto, avanzamento automatico, annulla, diario; i livelli 0 e 1 con Esc e il percorso in alto (4.10), menu della percentuale di zoom (4.3); scrittore XMP chirurgico e profili etichette aggiornati (4.6); lettura dei voti esistenti; spostamento delle scartate in `_Scartate` o nel Cestino | Già utilizzabile sui lavori veri, con ogni marca |
+| **1. Visore e valutazione** | Lo scrittore XMP parte solo dopo i file campione di Lightroom con uno scarto, per conoscere il valore di `xmpDM:good`. Si apre con una settimana di **raccolta dei campioni e prove di compatibilità**: RAW per marca, XMP da Lightroom 15 e Capture One, confronto con ApolloOne. Poi: lettori delle anteprime per tutte le marche verificati sui file veri, indice della dimensione dell'anteprima con il cartello onesto, benchmark per marca; griglia, foto singola, stelle, colori, scarto, avanzamento automatico, annulla, diario; navigator all'apertura con dischi, albero delle cartelle, preferiti e schede in alto, poi i livelli 0 e 1 con Esc e il percorso in alto (4.10), menu della percentuale di zoom (4.3); scrittore XMP chirurgico e profili etichette aggiornati (4.6); lettura dei voti esistenti; spostamento delle scartate in `_Scartate` o nel Cestino | Già utilizzabile sui lavori veri, con ogni marca |
 | **2. Fuoco e confronto** | Punto AF Sony con elenco pubblico dei corpi verificati; zoom 100% dal RAW quando l'anteprima è piccola; Canon e Nikon Z sperimentali; confronto 2–4 sincronizzato, lampeggio, zoom intelligente; raffiche per ritmo, numero di sequenza e corpo macchina, con pile, panoramica e promemoria (4.4), il livello 2 delle raffiche (4.10) e la griglia che non si muove (14.1); focus peaking e mappa di nitidezza; ordinamento della raffica a richiesta; promozione dei voti dati in macchina; filtri; AP1/AP2 | Beta 1, pubblica |
-| **3. Video e azioni** | Clip nella griglia, J-K-L, azioni sulla selezione, profilo etichette personalizzato (quelli pronti sono in fase 1), scorciatoie tipo PM/LR; navigator completo con albero, preferiti e schede (4.10; *fase scelta da me*, perché per Andrea è utile ma non essenziale) | Versione 1.0 |
+| **3. Video e azioni** | Clip nella griglia, J-K-L, azioni sulla selezione, profilo etichette personalizzato (quelli pronti sono in fase 1), scorciatoie tipo PM/LR; schede che uniscono più cartelle e preferiti a gruppi (4.10) | Versione 1.0 |
 | **4. Aiuti locali** | Zoom che segue il soggetto, salto e striscia dei volti, lampeggio allineato, livella, scene per somiglianza (nessuna selezione assistita) | 1.1 |
 | **5. Extra** | Duello, obiettivo di consegna, controller da gioco e MIDI, plugin Lightroom, geotag da GPX, statistiche, punto AF Fuji/OM/Panasonic/Pentax, RAW 9, selezione da scheda e passaggio a Importa | 1.2 e oltre |
 
@@ -528,13 +528,13 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 5. **Zoom intelligente:** resta dentro la raffica, segue il soggetto, si azzera uscendo dalla raffica (4.3).
 
 **Prese il 9 novembre:**
-6. **Tasti dello zoom in SelectsLab:** `Z` tutto schermo nitido, `⇧Z` 100% con clic e trascina (⌘Z resta Annulla), clic tenuto premuto = lentino al 100%; passare sopra senza cliccare non fa niente.
+6. **Tasti dello zoom:** `Z` 100% vero **nella finestra**, senza passare a tutto schermo, con clic e trascina; le frecce restano al 100%; di nuovo `Z` o `Esc` tornano alla foto adattata (Andrea, 9 novembre: "con z voglio la foto già al 100% senza il passaggio a full screen"). `⇧Z` fa lo stesso. ⌘Z resta Annulla; clic tenuto premuto = lentino al 100%; passare sopra senza cliccare non fa niente. *Prima: `Z` tutto schermo nitido, `⇧Z` 100%.*
 7. **Tutte le marche** (sezione 0): supporto multimarca e metadati verificati salgono in fase 1.
 8. **Specifica aggiornata** con il rapporto [[Mercato culling fotografico]].
 9. **Ordinamento della raffica a richiesta** per dettaglio nel riquadro AF o in una zona scelta: solo per decidere cosa confrontare, senza numeri né badge né scarti, sempre uguale a parità di file (5.1).
 10. **Raffiche dentro la selezione unica** (4.4): pila con numero di scatti e durata; Invio o doppio clic per entrare, Esc per uscire; dentro, panoramica scorrevole e scatto grande; `←`/`→` non escono mai dalla raffica; niente va in `X` da solo; promemoria per le raffiche mai guardate.
 11. **Zoom** (4.3): il 100% è un pixel per pixel; menu della percentuale in basso a sinistra, valido per la sessione; si riparte dal 100% a ogni avvio.
-12. **Navigator e tre livelli** (4.10): barra laterale con cartelle e preferiti, schede in alto; Esc risale di un livello e al livello più alto non fa niente; ⌘W risale come Esc nella foto e nella raffica, e chiude la scheda solo nella griglia.
+12. **Navigator e tre livelli** (4.10): barra laterale con cartelle e preferiti, schede in alto, **già all'apertura dalla fase 1** (9 novembre); Esc risale di un livello e al livello più alto non fa niente; ⌘W risale come Esc nella foto e nella raffica, e chiude la scheda solo nella griglia.
 13. **Marcatura sulla pila chiusa** (4.4): tocca solo gli scatti senza marcatura, e l'app dice quanti scatti già marcati ha lasciato com'erano.
 14. **Etichette Lightroom italiano e inglese** entrambe previste; **il confronto resta com'è**, da 2 a 4 foto (4.6, 14.2).
 15. **`P` dentro la raffica conferma lo scatto ed esce**; stelle, colori, `X` e `U` lasciano dentro (4.4).
