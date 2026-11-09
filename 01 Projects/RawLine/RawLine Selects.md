@@ -386,6 +386,27 @@ Perché due Esc di troppo non fanno danni (Andrea ha detto che basta così, senz
 - Un clic o Invio su una cartella dell'albero la apre in una scheda; le frecce muovono solo l'albero.
 - Una scheda contiene una cartella sola: le schede a più cartelle e i preferiti a gruppi restano della fase 3.
 
+### 4.11 Inspector a destra (chiesto da Andrea il 9 novembre)
+
+Andrea: "un inspector sulla destra tipo quello di Photo Mechanic, ma con anche gli EXIF e tutto quello che può tornarci utile"; prima uguale a Photo Mechanic, poi si aggiunge. In Photo Mechanic il pannello a destra della foto ha Info (metadati, campi a scelta), Ritaglio, Zoom, Istogramma, Alte luci e ombre. FastRawViewer mette tempo e diaframma nella prima riga e nasconde i campi vuoti.
+
+**Cosa c'è** (*scelte mie*, da rivedere con Andrea dopo averlo provato):
+- Si apre e si chiude con ⌥⌘I e dal menu Vista; aperto di serie; vale nella griglia e nella foto grande e mostra la foto attiva. Con più foto selezionate dice anche quante sono.
+- **Riga di testa:** nome del file e, in grande, tempo · diaframma · ISO · focale.
+- **Zoom:** cursore dal 10% al 400%, bottoni Adatta e 100%, la percentuale attuale. Va insieme al menu in basso a sinistra e al pizzico sul trackpad.
+- **Istogramma** RGB e luminosità della foto a schermo, con la percentuale di alte luci bruciate e di ombre chiuse.
+- **Scatto:** data e ora con i decimi, diaframma, tempo, ISO, compensazione, focale con l'equivalente 35 mm, programma, misurazione, flash, bilanciamento del bianco.
+- **Fotocamera:** marca e modello, numero di serie, obiettivo, software della fotocamera.
+- **File:** nome, cartella, pixel e megapixel, peso, tipo, spazio colore, orientamento, data di modifica.
+- **Valutazione:** stelle, colore, scelta o scarto.
+- **Posizione:** latitudine, longitudine, altitudine, direzione, con "Apri in Mappe".
+- **IPTC:** titolo, didascalia, autore, copyright, parole chiave, città, luogo.
+- **Tutti i metadati:** chiuso di serie, ogni campo che il file contiene, per gruppo.
+- I campi vuoti non si mostrano. Ogni sezione si apre e si chiude e se lo ricorda.
+- Si legge solo l'intestazione del file, mai la foto intera, fuori dal thread principale; con le frecce tenute premute si legge solo la foto su cui ti fermi.
+
+**Zoom rivisto (9 novembre).** Il menu in basso a sinistra non zoomava: la scelta valeva solo per ⇧Z e spazio. Ora scegliere una percentuale zooma subito, come in Photoshop, e resta per ⇧Z e spazio; il menu mostra la percentuale vera anche quando viene dal cursore o dal pizzico. `Z` resta il 100%.
+
 ---
 
 ## 5. Funzioni migliorative (versioni 1.x)
@@ -515,7 +536,7 @@ Oggi tema, segnalazione dei problemi, controllo dei crash, aggiornamenti e guida
 
 ## 8. Piano di sviluppo
 
-*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
+*Ordine della fase 1 (9 novembre):* 1A app di base (fatto), 1B navigator, schede e griglia (fatto), 1C valutazioni (`CullCore`, tasti, avanzamento automatico, annulla, diario; fatto), 1C2 inspector a destra e zoom rivisto (4.11), 1D lettura e scrittura degli XMP, 1E spostamento delle scartate e prove di compatibilità. I piani stanno in `~/Developer/Rawline/docs/plans`.
 
 | Fase | Contenuto | Esito |
 |---|---|---|
