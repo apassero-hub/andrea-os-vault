@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cogne Trail · bozze logo valle</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@700&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;padding:24px;background:#F3F4EE;font-family:"Inter Tight",sans-serif}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.c{border-radius:12px;padding:28px 20px 16px;background:#E4E6DA;display:flex;flex-direction:column;align-items:center;gap:14px}
+.c.d{background:#1E2119}
+.c svg{width:100%;max-width:320px;height:auto;display:block}
+.k{font:500 13px "Inter Tight",sans-serif;color:#6B7258;align-self:flex-start}
+.d .k{color:#8D917F}
+</style></head><body>
+<div class="g" id="g"></div>
+<script>
+const N="#E4E6DA",M="#1E2119",R="#B5412A",R2="#D4573D",S2="#3A3E33";
+const pts=a=>a.map(p=>p.join(",")).join(" ");
+// ricalco dalla vista di Cogne verso il Gran Paradiso (coordinate su 1300 px di larghezza)
+const SKY=[[0,395],[90,400],[165,410],[215,370],[265,345],[330,368],[410,378],[470,352],[545,318],[600,284],[640,285],[668,268],[750,262],[810,300],[905,345],[965,330],[995,290],[1030,282],[1065,268],[1100,262],[1125,290],[1200,305],[1270,300],[1300,290]];
+const SNOW=[[668,268],[750,262],[810,300],[905,345],[965,330],[995,290],[1030,282],[1065,268],[1100,262],[1125,290],[1200,305],[1250,325],[1150,352],[1060,398],[960,432],[870,420],[790,372],[720,322]];
+const VL=[[0,410],[140,470],[330,640],[480,760],[650,960],[0,960]];
+const VR=[[1300,470],[1200,560],[1000,650],[850,770],[650,960],[1300,960]];
+const MASS=pts(SKY)+" 1300,960 0,960";
+const scene=(m,s,v)=>`<polygon points="${MASS}" fill="${m}"/><polygon points="${pts(SNOW)}" fill="${s}" transform="translate(0,26)"/><polygon points="${pts(VL)}" fill="${v}"/><polygon points="${pts(VR)}" fill="${v}"/>`;
+const word=(x,y,size,c,a,anchor="middle")=>`<g transform="translate(${x},${y}) skewX(-12)"><text text-anchor="${anchor}" font-family="Lexend Zetta" font-weight="700" font-size="${size}" letter-spacing="-0.06em" fill="${c}">COGNE <tspan fill="${a}">TRAIL</tspan></text></g>`;
+// segno compatto, su 100 x 100
+const sSKY=[[0,34],[14,30],[22,24],[32,28],[42,20],[50,14],[58,16],[66,24],[74,22],[80,16],[86,20],[100,18]];
+const sSNOW=[[50,14],[58,16],[66,24],[74,22],[80,16],[86,20],[94,25],[78,31],[64,35],[56,25]];
+const segno=(m,s,v)=>`<polygon points="${pts(sSKY)} 100,94 0,94" fill="${m}"/><polygon points="${pts(sSNOW)}" fill="${s}" transform="translate(0,3.5)"/><polygon points="0,40 50,94 0,94" fill="${v}"/><polygon points="100,44 50,94 100,94" fill="${v}"/>`;
+
+const V=[
+ ["A · Finestra", "", `<svg viewBox="0 230 1300 950">${scene(R,N,M)}${word(650,1130,112,M,R)}</svg>`],
+ ["A · Finestra su scuro", "d", `<svg viewBox="0 230 1300 950">${scene(R2,N,S2)}${word(650,1130,112,N,R2)}</svg>`],
+ ["B · Linea", "", `<svg viewBox="-20 230 1340 950"><polyline points="${pts(SKY)}" fill="none" stroke="${R}" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/><polyline points="0,410 650,960 1300,470" fill="none" stroke="${M}" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/>${word(650,1130,112,M,R)}</svg>`],
+ ["C · Segno e scritta", "", `<svg viewBox="0 0 470 110" style="max-width:340px"><g transform="translate(0,4)">${segno(R,N,M)}</g><g transform="translate(122,58) skewX(-12)"><text font-family="Lexend Zetta" font-weight="700" font-size="46" letter-spacing="-0.06em" fill="${M}">COGNE</text></g><g transform="translate(124,92) skewX(-12)"><text font-family="Lexend Zetta" font-weight="700" font-size="17" letter-spacing="-0.02em" fill="${R}">TRAIL · GRAN PARADISO</text></g></svg>`],
+ ["C · Segno da solo", "d", `<svg viewBox="-20 -20 140 140" style="max-width:200px"><rect x="-20" y="-20" width="140" height="140" rx="10" fill="${R2}"/>${segno(N,R2,M)}</svg>`],
+ ["D · Timbro", "", `<svg viewBox="0 0 400 400" style="max-width:260px"><defs><clipPath id="cv"><circle cx="200" cy="200" r="140"/></clipPath><path id="ring" d="M200,38 a162,162 0 1,1 -0.1,0"/></defs><circle cx="200" cy="200" r="192" fill="${M}"/><circle cx="200" cy="200" r="140" fill="${N}"/><g clip-path="url(#cv)"><g transform="translate(5,52) scale(.3)">${scene(R,N,M)}</g></g><text font-family="Lexend Zetta" font-weight="700" font-size="21" letter-spacing="0.02em" fill="${N}"><textPath href="#ring" startOffset="0">COGNE TRAIL · PARCO NAZIONALE GRAN PARADISO ·</textPath></text></svg>`]
+];
+document.getElementById("g").innerHTML=V.map(([k,cl,svg])=>`<div class="c ${cl}">${svg}<span class="k">${k}</span></div>`).join("");
+</script>
+</body></html>

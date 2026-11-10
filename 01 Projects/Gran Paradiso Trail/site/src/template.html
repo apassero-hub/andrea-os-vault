@@ -39,6 +39,8 @@ a{color:inherit}
 .gate-form input{flex:1;min-width:0;background:none;border:0;color:var(--neve);font:500 1.1rem var(--text);padding:.7rem 0;outline:none}
 .gate-form input::placeholder{color:#5b5f5c}
 .gate-form button{background:none;border:0;color:var(--larice);font:600 1rem var(--text);padding:.7rem 0 .7rem 1rem;cursor:pointer}
+.gate-field{margin-bottom:.4rem}
+.gate-box p.gate-note{font-size:.8rem;line-height:1.45;margin:1.1rem 0 0}
 .gate-msg{min-height:1.4em;margin-top:.8rem;font-size:.9rem;color:var(--larice)}
 .gate.out{animation:lift .9s cubic-bezier(.7,0,.2,1) forwards}
 @keyframes lift{to{transform:translateY(-100%)}}
@@ -175,15 +177,20 @@ svg .lbl-q{font:400 12px var(--text);fill:var(--roccia)}
 <body>
 <div class="gate" id="gate">
   <div class="gate-bg" aria-hidden="true"><span>COGNE</span><span>TRAIL</span></div>
-  <form class="gate-box" id="gateForm" autocomplete="off">
+  <form class="gate-box" id="gateForm" autocomplete="off" novalidate>
     <h1>Cogne Trail</h1>
     <p>Anteprima riservata a partner e atleti invitati.</p>
-    <label for="pw" class="sr" style="position:absolute;left:-9999px">Password</label>
+    <label for="em" style="position:absolute;left:-9999px">Email</label>
+    <div class="gate-form gate-field">
+      <input id="em" type="email" placeholder="La tua email" autocomplete="email" autofocus required>
+    </div>
+    <label for="pw" style="position:absolute;left:-9999px">Password</label>
     <div class="gate-form">
-      <input id="pw" type="password" placeholder="Password" autofocus required>
+      <input id="pw" type="password" placeholder="Password" required>
       <button type="submit">Entra</button>
     </div>
     <p class="gate-msg" id="msg" role="status"></p>
+    <p class="gate-note">Registriamo la tua email per sapere chi ha visto l'anteprima e poterti ricontattare sulla gara. Non la cediamo a nessuno.</p>
   </form>
 </div>
 <main class="wrap" id="site" hidden></main>
@@ -221,21 +228,35 @@ async function unlock(pw){
   const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations:250000, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
   return new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, data));
 }
-function show(html){
+// registro accessi: email e data di chi entra, salvati dalla funzione /api/accesso
+function logAccess(email){
+  try { fetch("/api/accesso", { method: "POST", keepalive: true, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) }).catch(() => {}); } catch(_) {}
+}
+function show(html, email){
   const site = document.getElementById("site");
   site.innerHTML = html; site.hidden = false;
+  const f = site.querySelector("#contatto-form [name=email]");
+  if (f && email && !f.value) f.value = email;
   const gate = document.getElementById("gate");
   gate.classList.add("out");
   setTimeout(() => gate.remove(), 950);
 }
 document.getElementById("gateForm").addEventListener("submit", async e => {
   e.preventDefault();
-  const pw = document.getElementById("pw").value, msg = document.getElementById("msg");
+  const em = document.getElementById("em"), pw = document.getElementById("pw").value, msg = document.getElementById("msg");
+  const email = em.value.trim();
+  if (!email || !em.checkValidity()) { msg.textContent = "Inserisci un'email valida per entrare."; em.focus(); return; }
+  if (!pw) { msg.textContent = "Inserisci la password."; return; }
   msg.textContent = "Verifica in corso…";
-  try { const html = await unlock(pw); try{sessionStorage.setItem("ct-pw", pw)}catch(_){}; show(html); }
+  try {
+    const html = await unlock(pw);
+    try { sessionStorage.setItem("ct-pw", pw); sessionStorage.setItem("ct-em", email); } catch(_) {}
+    logAccess(email); show(html, email);
+  }
   catch(_){ msg.textContent = "Password non corretta. Controlla maiuscole e spazi, poi riprova."; }
 });
-(async () => { let pw=null; try{pw=sessionStorage.getItem("ct-pw")}catch(_){}; if(pw){ try{ show(await unlock(pw)); }catch(_){} } })();
+// stessa sessione del browser: rientra senza chiedere di nuovo e senza registrare un nuovo accesso
+(async () => { let pw=null, em=null; try{pw=sessionStorage.getItem("ct-pw"); em=sessionStorage.getItem("ct-em")}catch(_){}; if(pw && em){ try{ show(await unlock(pw), em); }catch(_){} } })();
 </script>
 </body>
 </html>

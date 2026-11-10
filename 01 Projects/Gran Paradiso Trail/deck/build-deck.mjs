@@ -50,7 +50,7 @@ S("dark cover", `
   <div class="cover-in">
     <p class="kicker">Cogne, Parco Nazionale Gran Paradiso</p>
     <h1>Cogne<br>Trail</h1>
-    <p class="sub">Prima edizione · sabato 4 settembre 2027</p>
+    <p class="sub">Prima edizione · sabato 12 giugno 2027</p>
   </div>
   <div class="cover-prof">${profile(R47, { w: 1920, h: 300, min: 1300, max: 3100, pad: 20, labels: false, axis: false })}</div>
   <p class="cover-note">Presentazione del progetto per partner e istituzioni · bozza riservata</p>`);
@@ -75,7 +75,7 @@ S("numbers", `
     <div><b>2.895 m</b><span>la quota più alta, il Passo Invergneux</span></div>
     <div><b>400–500</b><span>atleti alla prima edizione, per crescere con cura</span></div>
     <div><b>3</b><span>giorni di evento in paese, da venerdì a domenica</span></div>
-    <div><b>4.9.27</b><span>sabato 4 settembre 2027, data proposta</span></div>
+    <div><b>12.6.27</b><span>sabato 12 giugno 2027, data proposta</span></div>
   </div>`);
 
 // 4 Invergneux 47
@@ -123,21 +123,21 @@ S("places", `
 S("weekend", `
   <h2 class="t">Il weekend</h2>
   <ol class="days">
-    <li><h3>Venerdì 3 settembre</h3><ul><li><time>16:00</time>Apertura village e ritiro pettorali</li><li><time>18:30</time>Briefing e presentazione percorsi</li><li><time>20:00</time>Cena del paese con i produttori</li></ul></li>
-    <li class="main"><h3>Sabato 4 settembre</h3><ul><li><time>06:30</time>Partenza Invergneux 47</li><li><time>08:30</time>Partenza Miniere 28</li><li><time>11:30</time>Primi arrivi della 28 km</li><li><time>13:00</time>Primi arrivi della 47 km</li><li><time>17:30</time>Premiazioni</li><li><time>20:00</time>Festa finale</li></ul></li>
-    <li><h3>Domenica 5 settembre</h3><ul><li><time>09:30</time>Corsa dei bambini e shake-out run</li><li><time>11:00</time>Brunch di chiusura</li></ul></li>
+    <li><h3>Venerdì 11 giugno</h3><ul><li><time>16:00</time>Apertura village e ritiro pettorali</li><li><time>18:30</time>Briefing e presentazione percorsi</li><li><time>20:00</time>Cena del paese con i produttori</li></ul></li>
+    <li class="main"><h3>Sabato 12 giugno</h3><ul><li><time>06:30</time>Partenza Invergneux 47</li><li><time>08:30</time>Partenza Miniere 28</li><li><time>11:30</time>Primi arrivi della 28 km</li><li><time>13:00</time>Primi arrivi della 47 km</li><li><time>17:30</time>Premiazioni</li><li><time>20:00</time>Festa finale</li></ul></li>
+    <li><h3>Domenica 13 giugno</h3><ul><li><time>09:30</time>Corsa dei bambini e shake-out run</li><li><time>11:00</time>Brunch di chiusura</li></ul></li>
   </ol>
   <p class="note">Gara di sabato: chi corre si ferma a dormire, il paese lavora tutto il weekend.</p>`);
 
-// 10 perché settembre
+// 10 perché giugno
 S("why", `
-  <h2 class="t">Perché settembre</h2>
+  <h2 class="t">Perché giugno</h2>
   <div class="why3">
-    <article><h3>Percorsi puliti</h3><p>A giugno il Passo Invergneux, quasi a 2.900 m, rischia ancora neve. A inizio settembre i sentieri sono aperti e sicuri.</p></article>
-    <article><h3>Un vuoto in calendario</h3><p>Una settimana dopo l'UTMB di Chamonix e una prima del Tor des Géants: nessuna sovrapposizione con le grandi gare dell'area.</p></article>
-    <article><h3>Il paese è pronto</h3><p>Dopo agosto gli alberghi tornano disponibili, la luce è perfetta e i larici iniziano a cambiare colore.</p></article>
+    <article><h3>Un weekend libero</h3><p>Nessuna grande gara nell'area. Cervinia, Chamonix e Lavaredo arrivano due settimane dopo: per molti Cogne è l'ultimo lungo prima dell'obiettivo.</p></article>
+    <article><h3>Lontano dal Tor</h3><p>Tre mesi prima del Tor des Géants: i volontari di Cogne e gli atleti della valle sono liberi.</p></article>
+    <article><h3>Il Parco a inizio estate</h3><p>Prati in fiore, le cascate di Lillaz piene d'acqua e le giornate più lunghe dell'anno.</p></article>
   </div>
-  <p class="note">Data proposta, da definire con il Comune e i soggetti coinvolti.</p>`);
+  <p class="note">Data proposta, da definire con il Comune e il Parco. Se al Passo Invergneux c'è ancora neve, la 47 km segue un percorso di riserva.</p>`);
 
 // 11 comunità
 S("community", `
@@ -169,7 +169,7 @@ S("audience", `
   <div class="why3">
     <article><h3>La nuova scena del trail</h3><p>Crew e community urbane di Milano, Torino e del nord Italia: runner giovani, attenti a stile, contenuti ed esperienza.</p></article>
     <article><h3>Chi corre in montagna</h3><p>Trail runner esperti che cercano gare tecniche, curate e fuori dai circuiti più affollati.</p></article>
-    <article><h3>La valle</h3><p>Atleti, famiglie e appassionati valdostani, insieme ai turisti che a settembre scelgono Cogne e il Parco.</p></article>
+    <article><h3>La valle</h3><p>Atleti, famiglie e appassionati valdostani, insieme ai turisti che a inizio estate scelgono Cogne e il Parco.</p></article>
   </div>`);
 
 // 14 partner
@@ -219,9 +219,9 @@ S("timeline", `
   <h2 class="t">Verso la prima edizione</h2>
   <ol class="tl">
     <li><span>Inverno 2026</span><h3>Partner e autorizzazioni</h3><p>Accordi con Comune e Parco, ricerca partner, identità e sito.</p></li>
-    <li><span>Primavera 2027</span><h3>Iscrizioni aperte</h3><p>Lancio pubblico, apertura iscrizioni, attivazioni con le crew.</p></li>
-    <li><span>Estate 2027</span><h3>Sopralluoghi e tracciatura</h3><p>Percorsi definitivi, ristori, piano di sicurezza, volontari.</p></li>
-    <li class="race-day"><span>4 settembre 2027</span><h3>Si corre</h3><p>Tre giorni di evento a Cogne.</p></li>
+    <li><span>Inizio 2027</span><h3>Iscrizioni aperte</h3><p>Lancio pubblico, apertura iscrizioni, attivazioni con le crew.</p></li>
+    <li><span>Maggio 2027</span><h3>Sopralluoghi e tracciatura</h3><p>Neve in quota, percorsi definitivi, ristori, piano di sicurezza, volontari.</p></li>
+    <li class="race-day"><span>12 giugno 2027</span><h3>Si corre</h3><p>Tre giorni di evento a Cogne.</p></li>
   </ol>`);
 
 // 18 chiusura

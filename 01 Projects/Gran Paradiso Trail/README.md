@@ -11,7 +11,7 @@ Nuova gara trail a Cogne (Valle d'Aosta, Parco Nazionale Gran Paradiso), ideata 
 | Quota massima | 2.895 m (Passo Invergneux) | 2.425 m (Miniere di Colonna) |
 | Partenza | 06:30 | 08:30 |
 
-- **Data proposta:** sabato 4 settembre 2027, weekend 3–5 settembre. È ancora da confermare con il Comune: Cogne è base vita del Tor des Géants, quindi va verificata la disponibilità dei volontari.
+- **Data proposta:** sabato 12 giugno 2027, weekend 11–13 giugno (seconda scelta 19 giugno). Settembre è scartato perché troppo vicino al TORX. Calendario e motivi in `DATA.md`. Da confermare con il Comune, con il Parco e con lo stato della neve al Passo Invergneux.
 - **Atleti alla prima edizione:** 400–500.
 - **Organizzazione:** "Cogne Trail". Il nome di Alessandro non compare come organizzatore.
 
@@ -24,7 +24,7 @@ Nuova gara trail a Cogne (Valle d'Aosta, Parco Nazionale Gran Paradiso), ideata 
   - larice (rosso ruggine) `#B5412A`, oppure `#D4573D` sul fondo scuro
   - lichene `#6B7258`
   - roccia `#8D917F`
-- **Logo provvisorio:** la scritta "Cogne Trail" in Lexend Zetta 700, italica e con le lettere strette. Il logo definitivo è in sospeso.
+- **Logo:** sito e PDF usano solo la scritta "Cogne Trail" in Lexend Zetta 700, italica e stretta. Il segno della valle (la V di Cogne con il Gran Paradiso dietro) e il timbro sono in `logo/`, messi da parte per il futuro e non ancora usati.
 - **Foto:** bianco e nero con grana.
 
 ## Cartelle
@@ -35,7 +35,23 @@ Nuova gara trail a Cogne (Valle d'Aosta, Parco Nazionale Gran Paradiso), ideata 
   - `src/img/`: foto in bianco e nero usate da sito e PDF.
   - `src/img/originali/`: le foto a colori di partenza.
   - `functions/api/contatto.js`: riceve il modulo contatti su Cloudflare Pages e salva le richieste nel KV `CONTATTI`. L'export CSV si scarica aprendo `/api/contatto` nel browser: chiede utente (qualsiasi) e password (`ADMIN_KEY`).
+  - `functions/api/accesso.js`: registra chi entra nell'anteprima (email, data, paese, città, browser) nel KV `ACCESSI`. Ogni accesso è una riga; rientrare nella stessa sessione del browser non crea un nuovo accesso.
   - `dist/index.html`: il sito pronto da pubblicare, con il contenuto cifrato.
+
+## Accessi e contatti
+
+Per entrare nel sito bisogna inserire email e password. L'email viene registrata e precompila anche il modulo contatti.
+
+Una volta pubblicato su Cloudflare Pages, gli elenchi si scaricano in CSV aprendo questi indirizzi nel browser. Il browser chiede utente e password: l'utente è libero, la password è la variabile `ADMIN_KEY` impostata su Cloudflare.
+
+- tutti gli accessi: `/api/accesso`
+- una riga per persona, con numero di accessi, primo e ultimo: `/api/accesso?riepilogo=1`
+- richieste dal modulo contatti: `/api/contatto`
+- **`logo/`:** loghi messi da parte, generati da `tools/logo.mjs`. Per ora non sono usati da sito e PDF.
+  - `segno.svg` e `segno-scuro.svg`: il segno da solo, per fondo chiaro e fondo scuro.
+  - `segno-scritta.svg`: segno con scritta.
+  - `timbro.svg`: versione circolare per medaglie, toppe e adesivi.
+  - `archivio/`: le bozze scartate, tenute come riferimento.
 - **`deck/`:** presentazione per i partner.
   - `build-deck.mjs`: testi e struttura delle slide.
   - `Cogne-Trail-Presentazione.pdf`: il PDF di 18 pagine generato dallo script.
@@ -48,6 +64,12 @@ Per convertire una nuova foto nello stile del progetto:
 swift tools/bw.swift site/src/img/originali/nome.jpg site/src/img/nome.jpg
 ```
 
+
+Per rigenerare i file del logo:
+
+```bash
+node tools/logo.mjs
+```
 
 Per rigenerare il sito, con la password del sito:
 
