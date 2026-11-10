@@ -51,7 +51,8 @@ let content = readFileSync(new URL("src/content.html", dir), "utf8")
   .replace("{{PROFILE_47}}", profile(R47, { w: 1000, h: 230, min: 1400, max: 3000 }))
   .replace("{{PROFILE_28}}", profile(R28, { w: 1000, h: 230, min: 1400, max: 3000 }));
 
-content = content.replace(/\{\{IMG_(\w+)\}\}/g, (_, n) => "data:image/jpeg;base64," + readFileSync(new URL(`src/img/${n}.jpg`, dir)).toString("base64"));
+content = content.replace(/\{\{IMG_(\w+)\}\}/g, (_, n) => "data:image/jpeg;base64," + readFileSync(new URL(`src/img/${n}.jpg`, dir)).toString("base64"))
+  .replace(/\{\{PNG_(\w+)\}\}/g, (_, n) => "data:image/png;base64," + readFileSync(new URL(`src/img/${n}.png`, dir)).toString("base64")); // PNG per i loghi con trasparenza
 const enc = new TextEncoder();
 const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
 const base = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
