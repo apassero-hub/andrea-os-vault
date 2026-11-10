@@ -2,10 +2,13 @@
 // Per leggerle: dashboard Cloudflare > KV > CONTATTI, oppure apri /api/contatto nel browser (export CSV):
 // il browser chiede utente e password; l'utente è libero, la password è ADMIN_KEY. La chiave non va più
 // nell'indirizzo (resterebbe nella cronologia e nei log).
+// Ogni richiesta arriva anche per mail a organizzazione@cognetrail.com, con "Rispondi" verso chi ha scritto.
+import { notifica, quando } from "../../lib/notifica.js";
 const TIPI = ["brand", "atleta", "media", "cogne"];
+const ETICHETTE = { brand: "Brand o partner", atleta: "Atleta o crew", media: "Media o creator", cogne: "Realtà di Cogne", altro: "Altro" };
 const clean = (v, max) => String(v ?? "").trim().slice(0, max);
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   let d;
   try { d = await request.json(); } catch { return new Response("Richiesta non valida", { status: 400 }); }
   if (d.sito) return new Response(null, { status: 204 }); // campo trappola compilato: bot, ignoriamo in silenzio
@@ -24,6 +27,16 @@ export async function onRequestPost({ request, env }) {
     return new Response("Dati mancanti", { status: 422 });
   }
   await env.CONTATTI.put(`${rec.data}_${crypto.randomUUID().slice(0, 8)}`, JSON.stringify(rec));
+  waitUntil(notifica(env, `Richiesta di contatto: ${rec.nome} (${ETICHETTE[rec.tipo]})`,
+    `Nuova richiesta dal modulo contatti di Cogne Trail.\n\n` +
+    `Chi è: ${ETICHETTE[rec.tipo]}\n` +
+    `Nome: ${rec.nome}\n` +
+    `Email: ${rec.email}\n` +
+    `Telefono: ${rec.telefono || "-"}\n` +
+    `Azienda, crew o realtà: ${rec.organizzazione || "-"}\n` +
+    `Quando: ${quando(rec.data)}\n\n` +
+    `Messaggio:\n${rec.messaggio || "-"}\n\n` +
+    `Rispondendo a questa mail scrivi direttamente a ${rec.email}.`, rec.email));
   return new Response(null, { status: 201 });
 }
 

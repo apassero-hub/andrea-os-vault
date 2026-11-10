@@ -1,16 +1,17 @@
 // Cloudflare Pages Function: registra chi entra nell'anteprima (email, data, paese) nel KV "ACCESSI".
 // Per leggerli: dashboard Cloudflare > KV > ACCESSI, oppure apri /api/accesso nel browser (export CSV):
 // il browser chiede utente e password; l'utente è libero, la password è ADMIN_KEY (come per /api/contatto).
+// A ogni accesso parte anche una mail di notifica a organizzazione@cognetrail.com (vedi lib/notifica.js).
+import { notifica, quando } from "../../lib/notifica.js";
 const clean = (v, max) => String(v ?? "").trim().slice(0, max);
 // cella CSV sicura: un valore che inizia con = + - @ verrebbe letto da Excel come formula
 const cell = v => { const t = String(v ?? "").replace(/[\u0000-\u001f]/g, " "); return (/^[=+\-@]/.test(t) ? "'" + t : t).replaceAll('"', '""'); };
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   let d;
   try { d = await request.json(); } catch { return new Response("Richiesta non valida", { status: 400 }); }
   const email = clean(d.email, 160).toLowerCase();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return new Response("Email non valida", { status: 422 });
-  if (!env.ACCESSI) return new Response(null, { status: 204 }); // KV non ancora collegato: il sito funziona lo stesso
 
   const cf = request.cf || {};
   const rec = {
@@ -20,6 +21,13 @@ export async function onRequestPost({ request, env }) {
     citta: clean(cf.city, 80),
     browser: clean(request.headers.get("user-agent"), 200),
   };
+  waitUntil(notifica(env, `Nuovo accesso al sito: ${email}`,
+    `${email} è entrato nell'anteprima di Cogne Trail.\n\n` +
+    `Quando: ${quando(rec.data)}\n` +
+    `Da: ${[rec.citta, rec.paese].filter(Boolean).join(", ") || "non noto"}\n` +
+    `Browser: ${rec.browser || "non noto"}\n\n` +
+    `Elenco completo degli accessi: https://cognetrail.com/api/accesso`));
+  if (!env.ACCESSI) return new Response(null, { status: 204 }); // KV non collegato: il sito funziona lo stesso
   await env.ACCESSI.put(`${rec.data}_${crypto.randomUUID().slice(0, 8)}`, JSON.stringify(rec));
   return new Response(null, { status: 201 });
 }

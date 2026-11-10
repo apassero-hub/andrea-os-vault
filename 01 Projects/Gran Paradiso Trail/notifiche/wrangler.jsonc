@@ -1,0 +1,12 @@
+{
+  // Worker interno che manda le mail di notifica del sito (accessi e modulo contatti).
+  // Non ha indirizzi pubblici: lo chiama solo il progetto Pages gran-paradiso-trail con il service binding NOTIFICHE.
+  "name": "cognetrail-notifiche",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_email": [
+    { "name": "EMAIL", "destination_address": "abram.alessandro01@gmail.com" }
+  ]
+}
