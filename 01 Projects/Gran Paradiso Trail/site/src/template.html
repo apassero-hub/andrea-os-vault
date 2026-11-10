@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cogne Trail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@300..800&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --neve:#E4E6DA;      /* neve vecchia: fondo */
+  --magnetite:#1E2119; /* testo e fondo gate */
+  --larice:#B5412A;    /* ruggine del ferro delle miniere: unico accento */
+  --lichene:#6B7258;   /* dettagli secondari */
+  --roccia:#8D917F;    /* testo attenuato */
+  --linea:#C8CBBC;
+  --display:"Lexend Zetta", "Arial", sans-serif;
+  --text:"Inter Tight", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--neve);color:var(--magnetite);font:400 1.0625rem/1.55 var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--larice);outline-offset:3px}
+
+/* ---------- gate ---------- */
+.gate,.end{--larice:#D4573D}
+.gate{position:fixed;inset:0;background:var(--magnetite);color:var(--neve);display:grid;place-items:center;overflow:hidden;z-index:10}
+.gate-bg{position:absolute;inset:-5%;display:flex;flex-direction:column;justify-content:center;filter:blur(14px);opacity:.28;pointer-events:none;user-select:none}
+.gate-bg span{font:800 clamp(3.5rem,14vw,13rem)/1 var(--display);letter-spacing:-.02em;white-space:nowrap;color:var(--neve)}
+.gate-bg span:nth-child(2){color:var(--larice);padding-left:12vw}
+.gate-box{position:relative;width:min(22rem,calc(100% - 32px));text-align:left}
+.gate-box h1{font:700 1.35rem/1.1 var(--display);letter-spacing:-.09em;transform:skewX(-12deg);transform-origin:left bottom;margin-bottom:.4rem}
+.gate-box p{color:var(--roccia);font-size:.95rem;margin-bottom:1.6rem}
+.gate-form{display:flex;border-bottom:1px solid var(--roccia)}
+.gate-form:focus-within{border-color:var(--larice)}
+.gate-form input{flex:1;min-width:0;background:none;border:0;color:var(--neve);font:500 1.1rem var(--text);padding:.7rem 0;outline:none}
+.gate-form input::placeholder{color:#5b5f5c}
+.gate-form button{background:none;border:0;color:var(--larice);font:600 1rem var(--text);padding:.7rem 0 .7rem 1rem;cursor:pointer}
+.gate-msg{min-height:1.4em;margin-top:.8rem;font-size:.9rem;color:var(--larice)}
+.gate.out{animation:lift .9s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes lift{to{transform:translateY(-100%)}}
+
+/* ---------- site ---------- */
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.top{display:flex;align-items:center;gap:2rem;padding:1.2rem 0;border-bottom:1px solid var(--linea)}
+.mark{font:700 .9rem var(--display);letter-spacing:-.09em;display:inline-block;transform:skewX(-12deg);}
+.top nav{display:flex;gap:1.4rem;margin-left:auto}
+.top nav a{text-decoration:none;font-weight:500}
+.top nav a:hover{color:var(--larice)}
+.draft{font-size:.85rem;color:var(--roccia)}
+
+.hero{position:relative;padding:clamp(2.5rem,7vw,6rem) 0 0}
+.where{color:var(--lichene);font-weight:500}
+.hero h1{font:700 clamp(2.4rem,15.5vw,13rem)/1.02 var(--display);letter-spacing:-.03em;margin:1.2rem 0 1.6rem;text-transform:uppercase}
+.when{font-weight:600;font-size:1.15rem}
+.hero-profile{margin-top:-2rem;width:100%}
+.hero-profile svg{width:100%;height:auto;display:block;overflow:visible}
+
+svg .ground{fill:var(--magnetite)}
+svg .ridge{fill:none;stroke:var(--larice);stroke-width:2.5;stroke-linejoin:round}
+svg .pt{fill:var(--neve);stroke:var(--larice);stroke-width:2}
+svg .lbl{font:600 13px var(--text);fill:var(--neve)}
+svg .lbl-q{font:400 12px var(--text);fill:var(--roccia)}
+.hero-profile svg .lbl.top{fill:var(--magnetite);font-size:15px}
+.hero-profile svg .lbl-q.top{fill:var(--lichene)}
+.profile svg .ground{fill:#D7DAD3}
+.profile svg .lbl{fill:var(--magnetite)}
+.profile svg .pt{fill:var(--neve)}
+.profile svg .axis{font:400 11px var(--text);fill:var(--roccia)}
+
+.photo{width:100vw;margin-left:calc(50% - 50vw);background:var(--neve)}
+.photo img{display:block;width:100%;height:clamp(220px,36vw,540px);object-fit:cover;mix-blend-mode:multiply;filter:contrast(1.05)}
+.photo.inset{width:auto;margin:0 0 3rem}
+.photo.inset img{height:clamp(200px,30vw,440px)}
+.races>.photo{margin-top:0}
+.manifesto{padding:clamp(3.5rem,8vw,7rem) 0;border-bottom:1px solid var(--linea)}
+.lead{font:500 clamp(1.8rem,3.6vw,3rem)/1.08 var(--text);letter-spacing:-.025em;max-width:20ch;margin-bottom:2.4rem}
+.lead.small{font-size:clamp(1.4rem,2.4vw,2rem);max-width:30ch}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:60rem}
+.cols p{max-width:38ch}
+
+.races{display:grid;gap:0}
+.race{padding:clamp(3rem,6vw,5rem) 0;border-bottom:1px solid var(--linea);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1.5rem 3rem;align-items:end}
+.race-head h2{font:700 clamp(1.5rem,3.2vw,2.7rem)/1.1 var(--display);letter-spacing:-.02em;text-transform:uppercase}
+.race-head .num{color:var(--larice);}
+.race-head p{margin-top:.8rem;color:#4a4e4f;max-width:30ch}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stats dt{font-size:.85rem;color:var(--roccia)}
+.stats dd{font:600 clamp(.95rem,1.4vw,1.2rem)/1.3 var(--display);letter-spacing:-.02em;}
+.profile{grid-column:1/-1}
+.profile svg{width:100%;height:auto;display:block;overflow:visible}
+.route{grid-column:1/-1;color:#4a4e4f;font-size:.95rem}
+
+.section-title{font:700 clamp(1.6rem,3.6vw,3rem)/1.1 var(--display);letter-spacing:-.02em;text-transform:uppercase;margin-bottom:2.5rem}
+.places{padding:clamp(3.5rem,8vw,7rem) 0;border-bottom:1px solid var(--linea)}
+.place-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem 3rem}
+.place.big{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:.2rem 3rem;align-items:baseline;padding-bottom:2.5rem;border-bottom:1px solid var(--linea)}
+.place.big .alt{grid-row:span 2;font:700 clamp(2.2rem,5.4vw,4.6rem)/1 var(--display);letter-spacing:-.03em;color:var(--larice)}
+.place.big h3{font-size:1.6rem}
+.place.big p{max-width:52ch}
+.alt{display:block;font:600 1.15rem/1 var(--display);color:var(--lichene);margin-bottom:.6rem}
+.place h3{font:700 1.2rem/1.2 var(--text);margin-bottom:.4rem}
+.place p{color:#4a4e4f;font-size:.98rem}
+
+.weekend{padding:clamp(3.5rem,8vw,7rem) 0;border-bottom:1px solid var(--linea)}
+.days{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.days>li{border-top:3px solid var(--magnetite);padding-top:1rem}
+.days>li:nth-child(2){border-color:var(--larice)}
+.days h3{font:600 .95rem/1.3 var(--display);margin-bottom:1rem}
+.days ul{list-style:none}
+.days ul li{display:grid;grid-template-columns:3.6rem 1fr;padding:.45rem 0;border-bottom:1px solid var(--linea);font-size:.97rem}
+.days time{font-weight:600;font-variant-numeric:tabular-nums}
+
+.partner{padding:clamp(3.5rem,8vw,7rem) 0}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin:1rem 0 3rem}
+.tiers article{border-left:1px solid var(--linea);padding-left:1.2rem}
+.tiers h3{font:700 1.15rem var(--text);margin-bottom:.5rem}
+.tiers p{color:#4a4e4f;font-size:.96rem}
+.support{color:var(--roccia);max-width:60ch}
+
+.end{background:var(--magnetite);color:var(--neve);padding:clamp(4rem,10vw,8rem) clamp(16px,4vw,48px) 2rem;margin:0 calc(-1 * clamp(16px,4vw,48px))}
+.big-end{font:700 clamp(1.5rem,5.2vw,4.8rem)/1.1 var(--display);letter-spacing:-.03em;text-transform:uppercase;color:var(--larice);margin-bottom:3rem}
+.end a{color:var(--larice)}
+.fine{margin-top:3rem;font-size:.85rem;color:var(--roccia)}
+
+.contact{padding:clamp(3.5rem,8vw,7rem) 0;border-top:1px solid var(--linea)}
+.contact-form{max-width:52rem}
+.who{border:0;display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 2rem}
+.who legend{font-size:.9rem;color:var(--roccia);margin-bottom:.8rem}
+.who label{position:relative;cursor:pointer}
+.who input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.who label{border:1px solid var(--magnetite);padding:.6rem 1rem;font-weight:500;font-size:.95rem}
+.who label:has(input:checked){background:var(--magnetite);color:var(--neve)}
+.who label:has(input:focus-visible){outline:2px solid var(--larice);outline-offset:3px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 2rem}
+.fields label,.consent{font-size:.9rem;color:#4a4e4f}
+.fields input,.fields textarea{display:block;width:100%;margin-top:.35rem;background:transparent;border:0;border-bottom:1px solid var(--magnetite);font:400 1.05rem var(--text);color:var(--magnetite);padding:.5rem 0;border-radius:0;resize:vertical}
+.fields input:focus,.fields textarea:focus{outline:none;border-bottom-color:var(--larice);border-bottom-width:2px}
+.fields .wide{grid-column:1/-1}
+.hp{position:absolute;left:-9999px}
+.consent{display:flex;gap:.7rem;align-items:flex-start;margin:1.8rem 0;max-width:60ch}
+.consent input{margin-top:.25rem;accent-color:var(--larice)}
+.send{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.send button{background:var(--larice);color:#fff;border:0;font:600 .95rem var(--display);letter-spacing:-.04em;padding:1rem 1.6rem;cursor:pointer}
+.send button:hover{background:var(--magnetite)}
+.send button[disabled]{opacity:.6;cursor:wait}
+.form-msg{font-size:.95rem;max-width:40ch}
+.form-msg.err{color:var(--larice)}
+.contact-form.sent .who,.contact-form.sent .fields,.contact-form.sent .consent,.contact-form.sent button{display:none}
+.contact-form.sent .form-msg{font:500 clamp(1.3rem,2.4vw,1.8rem)/1.2 var(--text);letter-spacing:-.02em;max-width:30ch}
+.nav-cta{color:var(--larice)}
+@media (max-width:900px){.fields{grid-template-columns:1fr}}
+
+@media (max-width:900px){
+  .top nav{display:none}
+  .draft{margin-left:auto}
+  .cols,.race{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .place-grid,.days,.tiers{grid-template-columns:1fr}
+  .place.big{grid-template-columns:1fr}
+  .place.big .alt{grid-row:auto}
+  .hero-profile{margin-top:0}
+  svg .lbl,svg .lbl-q{display:none}
+  svg .lbl.keep{display:block}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .gate.out{animation:none;display:none}
+}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <div class="gate-bg" aria-hidden="true"><span>COGNE</span><span>TRAIL</span></div>
+  <form class="gate-box" id="gateForm" autocomplete="off">
+    <h1>Cogne Trail</h1>
+    <p>Anteprima riservata a partner e atleti invitati.</p>
+    <label for="pw" class="sr" style="position:absolute;left:-9999px">Password</label>
+    <div class="gate-form">
+      <input id="pw" type="password" placeholder="Password" autofocus required>
+      <button type="submit">Entra</button>
+    </div>
+    <p class="gate-msg" id="msg" role="status"></p>
+  </form>
+</div>
+<main class="wrap" id="site" hidden></main>
+
+<script>
+// modulo contatto: gestito qui perché il contenuto decifrato non esegue script
+
+const ENDPOINT = "/api/contatto";
+document.addEventListener("submit", async e => {
+  const f = e.target; if (f.id !== "contatto-form") return;
+  e.preventDefault();
+  const msg = f.querySelector(".form-msg"), btn = f.querySelector("button");
+  msg.className = "form-msg err";
+  const d = Object.fromEntries(new FormData(f));
+  if (!d.tipo) { msg.textContent = "Scegli chi sei per sapere a chi passarti."; return; }
+  if (!d.nome || !d.email || !f.email.checkValidity()) { msg.textContent = "Inserisci nome ed email validi, così possiamo ricontattarti."; return; }
+  if (!d.privacy) { msg.textContent = "Spunta il consenso per farti ricontattare."; return; }
+  btn.disabled = true; msg.className = "form-msg"; msg.textContent = "Invio in corso…";
+  try {
+    const r = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) });
+    if (!r.ok) throw 0;
+    f.classList.add("sent");
+    msg.textContent = "Richiesta inviata. Ti ricontattiamo nei prossimi giorni.";
+  } catch (_) {
+    btn.disabled = false; msg.className = "form-msg err";
+    msg.textContent = "Invio non riuscito. Controlla la connessione e riprova tra poco.";
+  }
+});
+
+const PAYLOAD = "{{PAYLOAD}}";
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function unlock(pw){
+  const raw = b64(PAYLOAD), salt = raw.slice(0,16), iv = raw.slice(16,28), data = raw.slice(28);
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations:250000, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  return new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, data));
+}
+function show(html){
+  const site = document.getElementById("site");
+  site.innerHTML = html; site.hidden = false;
+  const gate = document.getElementById("gate");
+  gate.classList.add("out");
+  setTimeout(() => gate.remove(), 950);
+}
+document.getElementById("gateForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const pw = document.getElementById("pw").value, msg = document.getElementById("msg");
+  msg.textContent = "Verifica in corso…";
+  try { const html = await unlock(pw); try{sessionStorage.setItem("ct-pw", pw)}catch(_){}; show(html); }
+  catch(_){ msg.textContent = "Password non corretta. Controlla maiuscole e spazi, poi riprova."; }
+});
+(async () => { let pw=null; try{pw=sessionStorage.getItem("ct-pw")}catch(_){}; if(pw){ try{ show(await unlock(pw)); }catch(_){} } })();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cogne-trail",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4321",
+        "-d",
+        "/Users/andreapasserini/Desktop/Andrea OS/01 Projects/Gran Paradiso Trail/site/dist"
+      ],
+      "port": 4321
+    }
+  ]
+}
