@@ -27,6 +27,7 @@ Aggiornato al 10 novembre 2026.
   - [ ] impostare la variabile `ADMIN_KEY`
   - [ ] collegare il dominio
   - [ ] provare il registro accessi e il modulo contatti dal sito pubblicato
+- [ ] Contattare i partner: lista e priorità in PARTNER.md (ricerca del 10 novembre)
 - [ ] Sezione partner del sito: allinearla alle 6 categorie del PDF, se serve
 - [ ] Verificare il 12 giugno con Comune e Parco
 - [ ] Neve al Passo Invergneux a metà giugno: raccogliere le condizioni degli ultimi anni e preparare un percorso di riserva

@@ -55,6 +55,9 @@ Una volta pubblicato su Cloudflare Pages, gli elenchi si scaricano in CSV aprend
 - **`deck/`:** presentazione per i partner.
   - `build-deck.mjs`: testi e struttura delle slide.
   - `Cogne-Trail-Presentazione.pdf`: il PDF di 18 pagine generato dallo script.
+  - `build-cas.mjs` e `Cogne-Trail-Proposta-CAS.pdf`: la proposta di 10 pagine per Cogne Acciai Speciali. Riprende lo stile da `build-deck.mjs`. Note e testo dell'email sono in `PROPOSTA-CAS.md`.
+- **`budget/`:** `Cogne_Trail_2027_Budget_v2.xlsx`, il budget unico a tre scenari costruito sui file di Ale. Si rigenera con `tools/budget_v2.py`. La revisione e i risultati sono in `BUDGET.md`.
+- **`PARTNER.md`:** ricerca dei possibili partner, dei fondi e dei contatti.
 
 ## Comandi
 
@@ -81,6 +84,12 @@ Per rigenerare il PDF (serve Google Chrome installato):
 
 ```bash
 node deck/build-deck.mjs
+```
+
+Per rigenerare la proposta per Cogne Acciai Speciali:
+
+```bash
+node deck/build-cas.mjs
 ```
 
 Per vedere il sito in anteprima:
