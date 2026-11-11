@@ -34,4 +34,3 @@ Ritorno e ⇧⌘Z non tutto-o-niente per gruppo; riga troncata del diario fa per
 ## Altre note
 - La fase 4 ha premuto i pulsanti dell'avviso con l'accessibilità di macOS (AXPress), senza mouse né tastiera, sulla build Debug.
 - Spec `RawLine Selects.md` aggiornata (§4.4, §4.5, §4.7) ma non committata nel vault.
-- Gran Paradiso Trail: online su gran-paradiso-trail.pages.dev; manca la `ADMIN_KEY` (la imposti tu), poi va ripubblicato.

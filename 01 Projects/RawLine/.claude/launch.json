@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8765", "--directory", "/Users/andreapasserini/Developer/Rawline/site"],
       "port": 8765
+    },
+    {
+      "name": "rawline-worker",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "cd /Users/andreapasserini/Developer/Rawline/web && CI=1 npx wrangler d1 migrations apply rawline-iscritti --local && npx wrangler dev --port 8787 --var TURNSTILE_SECRET:"],
+      "port": 8787
     }
   ]
 }
